@@ -1,0 +1,1 @@
+console.log("Hello there, this is the console log for lab 03.");
