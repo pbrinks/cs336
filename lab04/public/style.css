@@ -1,0 +1,175 @@
+/*
+Paige Brinks, plb7
+9/28/2016
+
+lab04
+working with CSS
+*/
+
+
+body {
+	font: 16px helvetica, arial, sans-serif;
+	background: url("Blue-rule.png");
+}
+
+/* paragraphs */
+p {
+  color: blue;
+}
+
+strong {
+	color: #f00; 	/* other possible colors: blue, purple gray, yellow, orange */ 
+	font: 200% serif;
+	background-color: #ddf; 
+	}
+
+/* style for initial letters S in first paragraph */
+.spinach { 
+	color: #090;
+	background-color: #ddf; 
+}
+
+/* set first paragraph to be italic */
+#first { 
+	font-style: italic; 
+}
+
+h3 {
+	border-top: 1px solid gray;
+}
+
+/* numbered paragraphs */
+h3.numbered {
+	counter-reset: mynum;
+}
+
+/*place yellow pin image before paragraph elements*/
+ p:before {
+  content: url("Yellow-pin.png");
+}
+
+p.numbered:before {
+  content: counter(mynum) ": ";
+  counter-increment: mynum;
+  font-weight: bold;
+}
+
+
+li {
+	list-style-type: lower-roman;
+	margin-bottom: 8px;
+}
+
+/* border for oceans ol*/
+#border {
+	border: 10px solid #44bdbd;
+	 width: 150px;
+	 float: left;
+}
+
+/* border for numbered paragraphs */
+#lorem {
+	border: 10px solid #00a0c5;
+	 width: 300px;
+	 float: left;
+}
+
+/* place yellow pin in upper right corner*/
+#fixed-pin  {
+  position:fixed;
+  top: 3px;
+  right: 3px;
+}
+
+/* header before table*/
+#clear {
+	font-weight: bold;
+	clear:both;
+}
+
+/* styling for table */
+ #demo-table {
+  font: 100% sans-serif;
+  background-color: #efe;
+  border-collapse: collapse;
+  empty-cells: show;
+  border: 1px solid #7a7;
+  clear: both;
+}
+
+#demo-table > caption {
+  text-align: left;
+  /*font-weight: bold;*/
+  /*font-size: 200%;*/
+  border-bottom: .2em solid #4ca;
+  margin-bottom: .5em;
+  caption-side: bottom;
+  text-align: right;
+  font-style: italic;
+}
+
+
+/* basic shared rules */
+#demo-table th,
+#demo-table td {
+  text-align: right;
+  padding-right: .5em;
+}
+
+#demo-table th {
+  font-weight: bold;
+  padding-left: .5em;
+}
+
+
+/* header */
+#demo-table > thead > tr:first-child > th {
+  text-align: center;
+  color: blue;
+}
+
+#demo-table > thead > tr + tr > th {
+  font-style: italic;
+  color: gray;
+}
+
+/* fix size of superscript */
+#demo-table sup {
+  font-size: 75%;
+}
+
+/* body */
+#demo-table td {
+  background-color: #cef;
+  padding:.5em .5em .5em 3em;
+}
+
+#demo-table tbody th:after {
+  content: ":";
+}
+
+
+/* footer */
+#demo-table tfoot {
+  font-weight: bold;
+}
+
+#demo-table tfoot th {
+  color: blue;
+}
+
+#demo-table tfoot th:after {
+  content: ":";
+}
+
+#demo-table > tfoot td {
+  background-color: #cee;
+}
+
+#demo-table > tfoot > tr:first-child td {
+  border-top: .2em solid #7a7;
+}
+
+#demo-table tbody td {
+  border:1px solid #7a7;
+}
