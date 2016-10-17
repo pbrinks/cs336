@@ -1,0 +1,52 @@
+<!doctype html>
+
+<!--
+	Paige Brinks, plb7
+	Lab 07
+	10/15/16
+
+	working with JQuery
+
+-->
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Demo</title>
+    <script src="app.js"></script>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <a href="http://jquery.com/">jQuery</a>
+    <script> 
+
+		$( document ).ready(function() {
+
+			// when link is clicked, create pop-up
+			$( "a" ).click(function( event ) {	 
+				alert( "As you can see, the link no longer took you to jquery.com" ); 
+				event.preventDefault();	 
+			});
+			$( "a" ).addClass( "test" );
+			// $( "a" ).removeClass( "test" );
+
+			// when link is clicked, slowly fade away
+			$( "a" ).click(function( event ) {
+				event.preventDefault();
+				$( this ).hide( "slow" );
+			});
+
+
+			// add p element to the DOM
+			var pElement = $( "<p>This is a new paragraph!</p>" );
+			pElement.appendTo( "#content" );
+			pElement.insertAfter( "a:last" );
+
+
+		});	// ready
+
+
+    </script>
+  </body>
+</html>

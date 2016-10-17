@@ -1,0 +1,13 @@
+{
+  "name": "lab07",
+  "version": "1.0.0",
+  "description": "lab 07",
+  "main": "app.js",
+  "scripts": {
+      //  "start": "kill $(pgrep node)"
+        //  node app.js &",
+         "stop": "kill $(pgrep node)"
+  },
+  "author": "plb7",
+  "license": "ISC"
+}
