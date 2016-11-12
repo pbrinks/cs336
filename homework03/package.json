@@ -1,0 +1,16 @@
+{
+  "name": "homework02",
+  "version": "1.0.0",
+  "description": "homework 3 - configure webserver to store a set of people records",
+  "main": "app.js",
+  "scripts": {
+    "start": "kill $(pgrep node) ; node app.js &",
+    "stop": "kill $(pgrep node)"
+  },
+  "author": "plb7",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "mongodb": "^2.2.11"
+  }
+}
