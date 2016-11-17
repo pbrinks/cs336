@@ -75,7 +75,7 @@ app.listen(app.get('port'), function() {
 });
 
 // connect to mongoDB
-MongoClient.connect('mongodb://cs336:' + process.env.MONGO_PASSWORD + '@ds041939.mlab.com:41939/plb7-cs336', function (err, dbConnection) {
+MongoClient.connect('mongodb://cs336:bjarne@ds041939.mlab.com:41939/plb7-cs336', function (err, dbConnection) {
   if (err) throw err;
 
   db = dbConnection;
