@@ -1,67 +1,17 @@
-<!doctype html>
+<!-- index.html -->
+<!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Homework 03</title>
-    <script src="jquery.js"></script>
-</head>
-
-
-<body>
-<!-- form to input a user -->
-	<form id="personForm" method="post">
-	    <div>
-	        <label for="first_name">First Name:</label>
-	        <input type="text" id="first_name" name="first_name" required>
-	    </div>
-
-	    <div>
-	        <label for="lastName">Last Name:</label>
-	        <input type="text" id="lastName" name="lastName" required>
-	    </div>
-
-	    <div>
-	        <label for="id">ID:</label>
-	        <input type="text" id="text" name="id" required></textarea>
-	    </div>
-
-	    <div>
-	        <label for="startDate">Start Date (YYYY/MM/DD):</label>
-	        <input type="text" id="text" name="startDate" required></textarea>
-	    </div>
-
-
-	    <div>
-	        <button type="submit">Send</button>
-	    </div>
-	</form>
-	<br/>
-
-	<div>
-	    	<button type="submit" class="peopleButton" method="post" onclick="window.location.href = 'http://localhost:3000/people'">See all People</button>
-	</div>
-
-	<script>
-	// add person inputted into form into database
-		$( 'form' ).submit(function( event ) {
-			event.preventDefault();
-
-			var form = $( this );
-
-			$.ajax({
-				type: 'POST',
-			    url: '/people',
-			    data: form.serialize(),
-			    dataType: 'json',
-			    success: function( resp ) {
-			      $('body').append('<br/>' + '<div>' + "Person Added!" + '</div');
-			    }
-
-			});
-		});
-
-
-	</script>
-
-</body>
+    <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://unpkg.com/jquery@3.1.0/dist/jquery.min.js"></script>
+    <script src="https://unpkg.com/remarkable@1.7.1/dist/remarkable.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/babel" src="scripts/example.js"></script>
+  </body>
 </html>

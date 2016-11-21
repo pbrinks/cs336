@@ -86,33 +86,31 @@ var getNameById = function(personIDParam) {
  * Param: personIDParam, the ID of the person whose years you want returned
  * return a int, years of person with ID of personIDParam
  */
-var getYearsById = function(personIDParam) {
-	for(var i = 0; i < personArray.length; i++) {
-		if(personArray[i].personID == personIDParam) {
-			var today = new Date();
-			var personDate = new Date(personArray[i].startDate);
-			var years = today.getFullYear() - personDate.getFullYear();
-			var m = today.getMonth() - personDate.getMonth();
-		    if (m < 0 || (m === 0 && today.getDate() < personDate.getDate())) {
-		        years--;
-		    }
-		 return years;
-		}
-	}
-}
+// var getYearsById = function(personIDParam) {
+// 	for(var i = 0; i < personArray.length; i++) {
+// 		if(personArray[i].personID == personIDParam) {
+// 			var today = new Date();
+// 			var personDate = new Date(personArray[i].startDate);
+// 			var years = today.getFullYear() - personDate.getFullYear();
+// 			var m = today.getMonth() - personDate.getMonth();
+// 		    if (m < 0 || (m === 0 && today.getDate() < personDate.getDate())) {
+// 		        years--;
+// 		    }
+// 		 return years;
+// 		}
+// 	}
+// }
 
 // display all Person objects
-// updated to use DB in mongo
 app.get('/people', function(req, res) {
 	// res.json({personArray});
 	db.collection("People").find({}).toArray(function(err, docs) {
 		if (err) throw err;
-		res.json(docs)
+		res.json(docs);
 	});
 });
 
 // create new person from form data
-// updated to use DB in mongo
 app.post('/people', function(req,res) {
 	var newPerson = {
 		firstName: req.body.first_name,
@@ -130,77 +128,74 @@ app.post('/people', function(req,res) {
 });
 
 // display Person with specified id
-// if id does not exist, send 404 error
 app.get('/person/:id', function(req, res) {
-	if(getPersonById(req.params.id) == 0 ) {
-		res.status(404).send({ error: "404 - ID not found"});
-	 } else {	
-	 	res.json(getPersonById(req.params.id));
-	}
+	// add person not found error?
+	db.collection("People").find({id: req.params.id}).toArray(function(err, docs) {
+		if (err) throw err;
+		res.json(docs);
+	});
 });
 
 // update person by updated url
 app.put('/person/:id', function(req, res) {
-	if(getPersonById(req.params.id) == 0 ) {
-		res.status(404).send({ error: "404 - ID not found"});
-	} else {
-		for (var i = 0; i < personArray.length; i++) {
-			if(personArray[i].personID == req.params.id) {
-				personArray[i].firstName = req.body.firstName;
-				personArray[i].lastName = req.body.lastName;
-				personArray[i].startDate = req.body.startDate;
-			}
-		}
-		res.send("New person is " + req.body.firstName + " " + req.body.lastName + " " + req.body.startDate);
-	}
+	// throw error if isnt correct
+	// fix this?
+
+	db.collection("People").update({id: req.params.id}, {firstName: req.params.firstName, lastName: req.params.lastName, startDate: req.params.startDate});
+
+	res.send("New person is " + req.body.firstName + " " + req.body.lastName + " " + req.body.startDate + '\n');
+	// })
 });
 
 // delete person whose name is put in url
 app.delete('/person/:id', function(req, res) {
-	if(getPersonById(req.params.id) == 0 ) {
-		res.status(404).send({ error: "404 - ID not found"});
-	} else {
-		for (var i = 0; i < personArray.length; i++) {
-			if(personArray[i] != null && req.params != null) {
-				if(personArray[i].personID == req.params.id) {
-					delete personArray[i];
-					res.send("Deleted Person with Id " + req.params.id);
-				}
 
-			}
-		}
-	}
+
+	db.collection("People").remove({id: req.params.id});
+	// .toArray(function(err,docs) {
+	// 	if (err) throw err;
+	// 	res.json(docs);
+	// });
+
 });
+
+
 
 // display name of Person with specified id
 // if id does not exist, send 404 error
 app.get('/person/:id/name', function(req, res) {
-	if(getPersonById(req.params.id) == 0 ) {
-		res.status(404).send({ error: "404 - ID not found"});
-	 } else {
-		res.json(getNameById(req.params.id));
-	}
+	 db.collection("People").find({id: req.params.id}, {firstName: 1} ).toArray(function(err, docs) {
+		if (err) throw err;
+		res.json(docs);
+	});
+
 });
 
 // display years of Person with specified id
 // if id does not exist, send 404 error
 app.get('/person/:id/years', function(req,res) {
-	if(getPersonById(req.params.id) == 0 ) {
-		res.status(404).send({ error: "404 - ID not found"});
-	 } else {
-		res.json(getYearsById(req.params.id));
-	}
+
+	db.collection("People").find({id: req.params.id}, {startDate: 1}).toArray(function(err, docs) {
+		if (err) throw err;
+		res.json(docs);
+	}) 
 });
 
+
+
+
 // return Person info of user inputted ID from form
-app.post('/form', function(req,res) {
-	var p = new Person();
-	p = getPersonById(req.body.person_id);
-	var response = "First Name: " + p.firstName + '\n' + "Last Name: " + 
-		p.lastName + '\n' + "Person ID: " + p.personID + '\n' + "Start Date: "
-		+ p.startDate;
-	res.send({"content": response});
-});
+// app.post('/form', function(req,res) {
+// 	var p = new Person();
+// 	p = getPersonById(req.body.person_id);
+// 	var response = "First Name: " + p.firstName + '\n' + "Last Name: " + 
+// 		p.lastName + '\n' + "Person ID: " + p.personID + '\n' + "Start Date: "
+// 		+ p.startDate;
+// 	res.send({"content": response});
+// });
+
+
+
 
 
 // return all people
