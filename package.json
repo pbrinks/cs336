@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "Code from the React tutorial.",
   "main": "server.js",
+  "engines": {
+    "node": "3.10.8"
+  },
   "dependencies": {
     "autoprefixer": "^6.5.3",
     "babel-core": "^6.18.2",
