@@ -24,7 +24,6 @@ var app = express();
 var MongoClient = require('mongodb').MongoClient;
 var db;
 
-var COMMENTS_FILE = path.join(__dirname, 'comments.json');
 var APP_PATH = path.join(__dirname, 'dist');
 
 app.set('port', (process.env.PORT || 3000));
@@ -37,11 +36,7 @@ app.use('/', express.static(APP_PATH));
 
 // Additional middleware which will set headers that we need on each request.
 app.use(function(req, res, next) {
-    // Set permissive CORS header - this allows this server to be used only as
-    // an API server in conjunction with something like webpack-dev-server.
     res.setHeader('Access-Control-Allow-Origin', '*');
-
-    // Disable caching so we'll always get the latest comments.
     res.setHeader('Cache-Control', 'no-cache');
     next();
 });
@@ -63,7 +58,6 @@ app.post('/api/comments', function(req, res) {
   };
   db.collection("Lab10").insertOne(newComment, function(err, result) {
     if (err) throw err;
-    var newID = result.insertedID;
     db.collection("Lab10").find({}).toArray(function(err, docs) {
       if (err) throw err;
       res.json(docs);
@@ -105,6 +99,7 @@ app.delete('/api/comments/:id', function(req, res) {
         });
 });
 
+app.use('*', express.static(APP_PATH));
 
 // connect to server
 app.listen(app.get('port'), function() {
@@ -114,6 +109,5 @@ app.listen(app.get('port'), function() {
 // connect to mongoDB
 MongoClient.connect('mongodb://cs336:' + 'bjarne' + '@ds041939.mlab.com:41939/plb7-cs336', function (err, dbConnection) {
   if (err) throw err;
-
   db = dbConnection;
 });
