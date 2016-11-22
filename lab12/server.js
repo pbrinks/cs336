@@ -11,9 +11,8 @@
  *
  *
  * Paige Brinks, plb7
- * 11/09/16
- * Lab 10
- * Webpack Tutorial
+ * 11/21/16
+ * Lab 12
  */
 
 var fs = require('fs');
@@ -26,12 +25,15 @@ var MongoClient = require('mongodb').MongoClient;
 var db;
 
 var COMMENTS_FILE = path.join(__dirname, 'comments.json');
+var APP_PATH = path.join(__dirname, 'dist');
 
 app.set('port', (process.env.PORT || 3000));
 
 app.use('/', express.static(path.join(__dirname, 'dist')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use('/', express.static(APP_PATH));
+
 
 // Additional middleware which will set headers that we need on each request.
 app.use(function(req, res, next) {
@@ -62,20 +64,55 @@ app.post('/api/comments', function(req, res) {
   db.collection("Lab10").insertOne(newComment, function(err, result) {
     if (err) throw err;
     var newID = result.insertedID;
-    db.collection("comments").find({}).toArray(function(err, docs) {
+    db.collection("Lab10").find({}).toArray(function(err, docs) {
       if (err) throw err;
       res.json(docs);
     });
   });
 });
 
-// cpnnect to server
+app.get('/api/comments/:id', function(req, res) {
+    db.collection("Lab10").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
+        if (err) throw err;
+        res.json(docs);
+    });
+});
+
+app.put('/api/comments/:id', function(req, res) {
+    var updateId = Number(req.params.id);
+    var update = req.body;
+    db.collection('Lab10').updateOne(
+        { id: updateId },
+        { $set: update },
+        function(err, result) {
+            if (err) throw err;
+            db.collection("Lab10").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
+            });
+        });
+});
+
+app.delete('/api/comments/:id', function(req, res) {
+    db.collection("Lab10").deleteOne(
+        {'id': Number(req.params.id)},
+        function(err, result) {
+            if (err) throw err;
+            db.collection("Lab10").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
+            });
+        });
+});
+
+
+// connect to server
 app.listen(app.get('port'), function() {
   console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
 
 // connect to mongoDB
-MongoClient.connect('mongodb://cs336:' + /*process.env.MONGO_PASSWORD */ 'bjarne' + '@ds041939.mlab.com:41939/plb7-cs336', function (err, dbConnection) {
+MongoClient.connect('mongodb://cs336:' + 'bjarne' + '@ds041939.mlab.com:41939/plb7-cs336', function (err, dbConnection) {
   if (err) throw err;
 
   db = dbConnection;

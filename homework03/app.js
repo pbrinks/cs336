@@ -1,7 +1,7 @@
 /* Paige Brinks, plb7
  * Homework 03 - create DB in mongo to store person objects
  *
- * DUE: 10/29/2016
+ * DUE: 11/18/2016
 */
 "use strict";
 var express = require('express');
@@ -36,70 +36,7 @@ class Person {
 		this.personID = personID;
 		this.startDate = startDate;
 	}
-
 }
-	
-// instances of person object
-var p1 = new Person("Paige", "Brinks", 1, "2013/08/28");
-var p2 = new Person("Lydia", "Cupery", 2, "2000/05/13");
-var p3 = new Person("Tammie", "Thong", 3, "2011/09/06");
-var p4 = new Person("Keith", "Vander Linden", 4, "2005/03/21");
-
-// array of people
-var personArray = new Array();
-personArray[0] = p1;
-personArray[1] = p2;
-personArray[2] = p3;
-personArray[3] = p4;
-
-
-/* getPersonById(personIDParam), returns person with given ID
- * Param: personIDParam, the ID of the person you want returned
- * return a Person, person with ID of personIDParam
- */
-var getPersonById = function(personIDParam) {
-	
-	for(var i = 0; i < personArray.length; i++) {
-		if(personArray[i].personID == personIDParam) {
-			return personArray[i];
-		}
-	}
-
-	return 0;
-
-}
-
-/* getNameByID(personIDParam), returns name of person with given ID
- * Param: personIDParam, the ID of the person whose name you want returned
- * return a string, name of person with ID of personIDParam
- */
-var getNameById = function(personIDParam) {
-	for(var i = 0; i < personArray.length; i++) {
-		if(personArray[i].personID == personIDParam) {
-			return personArray[i].firstName + " " + personArray[i].lastName;
-		}
-	}
-
-}
-
-/* getYearsByID(personIDParam), returns years in organization of person with given ID
- * Param: personIDParam, the ID of the person whose years you want returned
- * return a int, years of person with ID of personIDParam
- */
-// var getYearsById = function(personIDParam) {
-// 	for(var i = 0; i < personArray.length; i++) {
-// 		if(personArray[i].personID == personIDParam) {
-// 			var today = new Date();
-// 			var personDate = new Date(personArray[i].startDate);
-// 			var years = today.getFullYear() - personDate.getFullYear();
-// 			var m = today.getMonth() - personDate.getMonth();
-// 		    if (m < 0 || (m === 0 && today.getDate() < personDate.getDate())) {
-// 		        years--;
-// 		    }
-// 		 return years;
-// 		}
-// 	}
-// }
 
 // display all Person objects
 app.get('/people', function(req, res) {
@@ -113,7 +50,7 @@ app.get('/people', function(req, res) {
 // create new person from form data
 app.post('/people', function(req,res) {
 	var newPerson = {
-		firstName: req.body.first_name,
+		firstName: req.body.firstName,
 		lastName: req.body.lastName,
 		id: req.body.id,
 		startDate: req.body.startDate
@@ -129,7 +66,6 @@ app.post('/people', function(req,res) {
 
 // display Person with specified id
 app.get('/person/:id', function(req, res) {
-	// add person not found error?
 	db.collection("People").find({id: req.params.id}).toArray(function(err, docs) {
 		if (err) throw err;
 		res.json(docs);
@@ -138,27 +74,16 @@ app.get('/person/:id', function(req, res) {
 
 // update person by updated url
 app.put('/person/:id', function(req, res) {
-	// throw error if isnt correct
-	// fix this?
-
-	db.collection("People").update({id: req.params.id}, {firstName: req.params.firstName, lastName: req.params.lastName, startDate: req.params.startDate});
-
+	db.collection("People").update({id: req.params.id}, {$set: {firstName: req.params.firstName, lastName: req.params.lastName, startDate: req.params.startDate}}, {multi: true});
 	res.send("New person is " + req.body.firstName + " " + req.body.lastName + " " + req.body.startDate + '\n');
-	// })
 });
 
 // delete person whose name is put in url
 app.delete('/person/:id', function(req, res) {
-
-
-	db.collection("People").remove({id: req.params.id});
-	// .toArray(function(err,docs) {
-	// 	if (err) throw err;
-	// 	res.json(docs);
-	// });
+	db.collection("People").remove({id: req.params.id});	
+	res.send("Person deleted.\n");
 
 });
-
 
 
 // display name of Person with specified id
@@ -168,7 +93,6 @@ app.get('/person/:id/name', function(req, res) {
 		if (err) throw err;
 		res.json(docs);
 	});
-
 });
 
 // display years of Person with specified id
@@ -182,8 +106,6 @@ app.get('/person/:id/years', function(req,res) {
 });
 
 
-
-
 // return Person info of user inputted ID from form
 // app.post('/form', function(req,res) {
 // 	var p = new Person();
@@ -193,18 +115,6 @@ app.get('/person/:id/years', function(req,res) {
 // 		+ p.startDate;
 // 	res.send({"content": response});
 // });
-
-
-
-
-
-// return all people
-app.post('/button', function(req,res) {
-	db.collection("People").find({}).toArray(function(err, docs) {
- 		if (err) throw err;
- 		res.send({content: json(docs)});
-	});
-});
 
 // connect to mongo
 MongoClient.connect('mongodb://cs336:bjarne@ds041939.mlab.com:41939/plb7-cs336', function (err, dbConnection) {
