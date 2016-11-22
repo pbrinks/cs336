@@ -42,25 +42,24 @@ module.exports = React.createClass({
             contentType:'application/json',
             data: JSON.stringify(updatedComment)
         })
-            .done(function(comments){
-                this.context.router.push('/');
-            }.bind(this))
-            .fail(function(xhr, status, errorThrown) {
-                console.error(API_URL, status, errorThrown.toString());
-            }.bind(this));
+         .done(function(comments){
+             this.context.router.push('/');
+         }.bind(this))
+         .fail(function(xhr, status, errorThrown) {
+             console.error(API_URL, status, errorThrown.toString());
+         }.bind(this));
     },
     handleDelete: function() {
         $.ajax({
             url: API_URL + "/" + this.props.params.id,
-            type: 'DELETE'
+            type: 'DELETE',
         })
-        .done(function(comments) {
-            this.context.router.push('/');
-
-        }.bind(this))
-        .fail(function(xhr, status, errorThrown) {
-            console.error(API_URL, status, errorThrown.toString());
-        }.bind(this));
+         .done(function(comments){
+             this.context.router.push('/');
+         }.bind(this))
+         .fail(function(xhr, status, errorThrown) {
+             console.error(API_URL, status, errorThrown.toString());
+         }.bind(this));
     },
     render: function() {
         return (
@@ -78,6 +77,7 @@ module.exports = React.createClass({
                         onChange={this.handleTextChange}
                     />
                     <button type="button" onClick={this.handleUpdate}>Update</button>
+                    <button type="button" onClick={this.handleDelete}>Delete</button>
                 </form>
                 <Link to='/'>Cancel</Link>
             </div>
