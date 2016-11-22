@@ -8,61 +8,49 @@
  * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
- *
- * Paige Brinks, plb7
- * 11/21/16
- * Lab 12
  */
 
-var fs = require('fs');
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var MongoClient = require('mongodb').MongoClient
 
-var MongoClient = require('mongodb').MongoClient;
 var db;
-
 var APP_PATH = path.join(__dirname, 'dist');
 
 app.set('port', (process.env.PORT || 3000));
 
-app.use('/', express.static(path.join(__dirname, 'dist')));
+app.use('/', express.static(APP_PATH));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use('/', express.static(APP_PATH));
 
-
-// Additional middleware which will set headers that we need on each request.
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Cache-Control', 'no-cache');
     next();
 });
 
-// get and display comments from database
 app.get('/api/comments', function(req, res) {
     db.collection("Lab10").find({}).toArray(function(err, docs) {
         if (err) throw err;
         res.json(docs);
     });
 });
-  
-// when user writes a comment, save it to database and display it on the webpage
+
 app.post('/api/comments', function(req, res) {
-  var newComment = {
-    id: Date.now(),
-    author: req.body.author,
-    text: req.body.text,
-  };
-  db.collection("Lab10").insertOne(newComment, function(err, result) {
-    if (err) throw err;
-    db.collection("Lab10").find({}).toArray(function(err, docs) {
-      if (err) throw err;
-      res.json(docs);
+    var newComment = {
+        id: Date.now(),
+        author: req.body.author,
+        text: req.body.text,
+    };
+    db.collection("Lab10").insertOne(newComment, function(err, result) {
+        if (err) throw err;
+        db.collection("Lab10").find({}).toArray(function(err, docs) {
+            if (err) throw err;
+            res.json(docs);
+        });
     });
-  });
 });
 
 app.get('/api/comments/:id', function(req, res) {
@@ -99,15 +87,16 @@ app.delete('/api/comments/:id', function(req, res) {
         });
 });
 
+// Send all routes/methods not specified above to the app root.
 app.use('*', express.static(APP_PATH));
 
-// connect to server
 app.listen(app.get('port'), function() {
-  console.log('Server started: http://localhost:' + app.get('port') + '/');
+    console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
 
-// connect to mongoDB
-MongoClient.connect('mongodb://cs336:' + 'bjarne' + '@ds041939.mlab.com:41939/plb7-cs336', function (err, dbConnection) {
-  if (err) throw err;
-  db = dbConnection;
+// This assumes that the MongoDB password has been set as an environment variable.
+var mongoURL = 'mongodb://cs336:bjarne@ds041939.mlab.com:41939/plb7-cs336';
+MongoClient.connect(mongoURL, function(err, dbConnection) {
+    if (err) throw err;
+    db = dbConnection;
 });
