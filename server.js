@@ -100,3 +100,6 @@ MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) throw err;
     db = dbConnection;
 });
+
+
+
