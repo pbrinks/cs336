@@ -10,6 +10,13 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
+/** 
+ * Paige Brinks
+ * Lab 13
+ * DUE 12/2/2016
+ */
+
+
 var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -32,7 +39,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/api/comments', function(req, res) {
-    db.collection("Lab10").find({}).toArray(function(err, docs) {
+    db.collection("comments").find({}).toArray(function(err, docs) {
         if (err) throw err;
         res.json(docs);
     });
@@ -44,9 +51,9 @@ app.post('/api/comments', function(req, res) {
         author: req.body.author,
         text: req.body.text,
     };
-    db.collection("Lab10").insertOne(newComment, function(err, result) {
+    db.collection("comments").insertOne(newComment, function(err, result) {
         if (err) throw err;
-        db.collection("Lab10").find({}).toArray(function(err, docs) {
+        db.collection("comments").find({}).toArray(function(err, docs) {
             if (err) throw err;
             res.json(docs);
         });
@@ -54,7 +61,7 @@ app.post('/api/comments', function(req, res) {
 });
 
 app.get('/api/comments/:id', function(req, res) {
-    db.collection("Lab10").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
+    db.collection("comments").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
         if (err) throw err;
         res.json(docs);
     });
@@ -63,12 +70,12 @@ app.get('/api/comments/:id', function(req, res) {
 app.put('/api/comments/:id', function(req, res) {
     var updateId = Number(req.params.id);
     var update = req.body;
-    db.collection('Lab10').updateOne(
+    db.collection('comments').updateOne(
         { id: updateId },
         { $set: update },
         function(err, result) {
             if (err) throw err;
-            db.collection("Lab10").find({}).toArray(function(err, docs) {
+            db.collection("comments").find({}).toArray(function(err, docs) {
                 if (err) throw err;
                 res.json(docs);
             });
@@ -76,11 +83,11 @@ app.put('/api/comments/:id', function(req, res) {
 });
 
 app.delete('/api/comments/:id', function(req, res) {
-    db.collection("Lab10").deleteOne(
+    db.collection("comments").deleteOne(
         {'id': Number(req.params.id)},
         function(err, result) {
             if (err) throw err;
-            db.collection("Lab10").find({}).toArray(function(err, docs) {
+            db.collection("comments").find({}).toArray(function(err, docs) {
                 if (err) throw err;
                 res.json(docs);
             });
@@ -100,6 +107,3 @@ MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) throw err;
     db = dbConnection;
 });
-
-
-
