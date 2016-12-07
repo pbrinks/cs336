@@ -39,12 +39,17 @@ app.get('/api/events', function(req, res) {
 });
 
 app.post('/api/events', function(req, res) {
-    var newComment = {
+    var newEvent = {
         id: Date.now(),
-        author: req.body.author,
-        text: req.body.text,
+        name: req.body.name,
+        description: req.body.description,
+        date: req.body.date,
+        time: req.body.time,
+        location: req.body.location,
+        cost: req.body.cost
+
     };
-    db.collection("events").insertOne(newComment, function(err, result) {
+    db.collection("events").insertOne(newEvent, function(err, result) {
         if (err) throw err;
         db.collection("events").find({}).toArray(function(err, docs) {
             if (err) throw err;

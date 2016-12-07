@@ -11,11 +11,11 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div className="event">
-                <h2 className="eveentAuthor" >
-                    {this.props.author}
+                <h2 className="eventName" >
+                    {this.props.name}
                 </h2>
                 <span dangerouslySetInnerHTML={this.rawMarkup()} />
-		<Link to={'/' + this.props.id}>Edit</Link>
+		<Link to={'/events/' + this.props.id}>Edit</Link>
             </div>
         );
     }
