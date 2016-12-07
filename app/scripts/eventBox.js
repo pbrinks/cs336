@@ -9,7 +9,7 @@ module.exports = React.createClass({
     getInitialState: function() {
         return {data: []};
     },
-    loadCommentsFromServer: function() {
+    loadeventsFromServer: function() {
         $.ajax({
             url: API_URL,
             dataType: 'json',
@@ -22,7 +22,7 @@ module.exports = React.createClass({
              console.error(this.props.url, status, errorThrown.toString());
          }.bind(this));
     },
-    handleCommentSubmit: function(event) {
+    handleEventSubmit: function(event) {
         var events = this.state.data;
         event.id = Date.now();
         var newEvents = events.concat([event]);
@@ -42,8 +42,8 @@ module.exports = React.createClass({
          }.bind(this));
     },
     componentDidMount: function() {
-        this.loadCommentsFromServer();
-        setInterval(this.loadCommentsFromServer, POLL_INTERVAL);
+        this.loadeventsFromServer();
+        setInterval(this.loadeventsFromServer, POLL_INTERVAL);
     },
     render: function() {
         return (

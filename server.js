@@ -31,56 +31,56 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/api/comments', function(req, res) {
-    db.collection("comments").find({}).toArray(function(err, docs) {
+app.get('/api/events', function(req, res) {
+    db.collection("events").find({}).toArray(function(err, docs) {
         if (err) throw err;
         res.json(docs);
     });
 });
 
-app.post('/api/comments', function(req, res) {
+app.post('/api/events', function(req, res) {
     var newComment = {
         id: Date.now(),
         author: req.body.author,
         text: req.body.text,
     };
-    db.collection("comments").insertOne(newComment, function(err, result) {
+    db.collection("events").insertOne(newComment, function(err, result) {
         if (err) throw err;
-        db.collection("comments").find({}).toArray(function(err, docs) {
+        db.collection("events").find({}).toArray(function(err, docs) {
             if (err) throw err;
             res.json(docs);
         });
     });
 });
 
-app.get('/api/comments/:id', function(req, res) {
-    db.collection("comments").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
+app.get('/api/events/:id', function(req, res) {
+    db.collection("events").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
         if (err) throw err;
         res.json(docs);
     });
 });
 
-app.put('/api/comments/:id', function(req, res) {
+app.put('/api/events/:id', function(req, res) {
     var updateId = Number(req.params.id);
     var update = req.body;
-    db.collection('comments').updateOne(
+    db.collection('events').updateOne(
         { id: updateId },
         { $set: update },
         function(err, result) {
             if (err) throw err;
-            db.collection("comments").find({}).toArray(function(err, docs) {
+            db.collection("events").find({}).toArray(function(err, docs) {
                 if (err) throw err;
                 res.json(docs);
             });
         });
 });
 
-app.delete('/api/comments/:id', function(req, res) {
-    db.collection("comments").deleteOne(
+app.delete('/api/events/:id', function(req, res) {
+    db.collection("events").deleteOne(
         {'id': Number(req.params.id)},
         function(err, result) {
             if (err) throw err;
-            db.collection("comments").find({}).toArray(function(err, docs) {
+            db.collection("events").find({}).toArray(function(err, docs) {
                 if (err) throw err;
                 res.json(docs);
             });
