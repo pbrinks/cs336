@@ -20,10 +20,9 @@ ReactDOM.render((
 
 
 
-        <Route path="/events" component={EventBox}/ >
+        <Route path="/events" component={EventBox} />
         <Route path="/events/:id" component={EventEdit} />
 
-      
 
 
         </Route>

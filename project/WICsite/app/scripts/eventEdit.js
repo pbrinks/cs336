@@ -6,7 +6,7 @@ import { API_URL } from './global';
 
 module.exports = React.createClass({
     getInitialState: function() {
-        return {author: '', text: ''};
+        return {name: '', description: '', date: '', time: '', location: '', cost: ''};
     },
     componentDidMount: function() {
         this.loadData();
@@ -21,20 +21,37 @@ module.exports = React.createClass({
             this.setState(events[0]);
         }.bind(this));
     },
-    handleAuthorChange: function(e) {
-        this.setState({author: e.target.value});
+    handleNameChange: function(e) {
+        this.setState({name: e.target.value});
     },
-    handleTextChange: function(e) {
-        this.setState({text: e.target.value});
+    handleDescriptionChange: function(e) {
+        this.setState({description: e.target.value});
+    },
+    handleDateChange: function(e) {
+        this.setState({date: e.target.value});
+    },
+    handleTimeChange: function(e) {
+        this.setState({time: e.target.value});
+    },
+    handleLocationChange: function(e) {
+        this.setState({location: e.target.value});
+    },
+    handleCostChange: function(e) {
+        this.setState({cost: e.target.value});
     },
     contextTypes: {
         router: React.PropTypes.object
     },
     handleUpdate: function() {
-        var updatedEvent = {
-            author: this.state.author.trim(),
-            text: this.state.text.trim()
-        }
+    var updatedEvent = {
+        name: this.state.name.trim(),
+        description: this.state.description.trim(),
+        date: this.state.date.trim(),
+        time: this.state.time.trim(),
+        location: this.state.location.trim(),
+        cost: this.state.cost.trim(),
+
+    };
         $.ajax({
             url: API_URL + "/" + this.props.params.id,
             dataType: 'json',
@@ -68,13 +85,32 @@ module.exports = React.createClass({
                     <h1>Event Edit - {this.state.id}</h1>
                     <input
                         type="text"
-                        value={this.state.author}
-                        onChange={this.handleAuthorChange}
+                        value={this.state.name}
+                        onChange={this.handleNameChange}
                     />
                     <input
                         type="text"
-                        value={this.state.text}
-                        onChange={this.handleTextChange}
+                        value={this.state.description}
+                        onChange={this.handleDescriptionChange}
+                    /><input
+                        type="text"
+                        value={this.state.date}
+                        onChange={this.handleDateChange}
+                    />
+                    <input
+                        type="text"
+                        value={this.state.time}
+                        onChange={this.handleTimeChange}
+                    />
+                    <input
+                        type="text"
+                        value={this.state.location}
+                        onChange={this.handleLocationChange}
+                    />
+                    <input
+                        type="text"
+                        value={this.state.cost}
+                        onChange={this.handleCostChange}
                     />
                     <button type="button" onClick={this.handleUpdate}>Update</button>
                     <button type="button" onClick={this.handleDelete}>Delete</button>
