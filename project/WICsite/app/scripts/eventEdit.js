@@ -43,7 +43,7 @@ module.exports = React.createClass({
             data: JSON.stringify(updatedEvent)
         })
          .done(function(events){
-             this.context.router.push('/');
+             this.context.router.push('/events');
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
              console.error(API_URL, status, errorThrown.toString());
@@ -55,7 +55,7 @@ module.exports = React.createClass({
             type: 'DELETE',
         })
          .done(function(events){
-             this.context.router.push('/');
+            this.context.router.push('/events');
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
              console.error(API_URL, status, errorThrown.toString());

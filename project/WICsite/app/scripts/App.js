@@ -8,8 +8,8 @@ export default React.createClass({
         <h1>React Router Tutorial</h1>
         <ul role="nav">
           <li><NavLink to="/" onlyActiveOnIndex>Home</NavLink></li>
-          <li><NavLink to="/about">Edit</NavLink></li>
-          <li><NavLink to="/repos">Events</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
+          <li><NavLink to="/events">Events</NavLink></li>
         </ul>
         {this.props.children}
       </div>
