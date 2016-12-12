@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import $ from 'jquery';
 
-import { API_URL } from './global';
+import { MEMBER_URL } from './global';
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -17,7 +17,7 @@ module.exports = React.createClass({
         }
     },
     loadData: function() {
-        $.ajax(API_URL + "/" + this.props.params.id) .done(function(members) {
+        $.ajax(MEMBER_URL + "/" + this.props.params.id) .done(function(members) {
             this.setState(members[0]);
         }.bind(this));
     },
@@ -48,7 +48,7 @@ module.exports = React.createClass({
         role: this.state.role.trim(),
     };
         $.ajax({
-            url: API_URL + "/" + this.props.params.id,
+            url: MEMBER_URL + "/" + this.props.params.id,
             dataType: 'json',
             type: 'PUT',
             contentType:'application/json',
@@ -58,19 +58,20 @@ module.exports = React.createClass({
              this.context.router.push('/members');
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
-             console.error(API_URL, status, errorThrown.toString());
+             console.error(
+                MEMBER_URL, status, errorThrown.toString());
          }.bind(this));
     },
     handleDelete: function() {
         $.ajax({
-            url: API_URL + "/" + this.props.params.id,
+            url: MEMBER_URL + "/" + this.props.params.id,
             type: 'DELETE',
         })
          .done(function(members){
             this.context.router.push('/members');
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
-             console.error(API_URL, status, errorThrown.toString());
+             console.error(MEMBER_URL, status, errorThrown.toString());
          }.bind(this));
     },
     render: function() {

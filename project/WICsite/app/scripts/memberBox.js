@@ -3,7 +3,7 @@ import $ from 'jquery';
 
 import MemberList from './memberList';
 import MemberForm from './memberForm';
-import { API_URL, POLL_INTERVAL } from './global';
+import { MEMBER_URL, POLL_INTERVAL } from './global';
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -11,7 +11,7 @@ module.exports = React.createClass({
     },
     loadmembersFromServer: function() {
         $.ajax({
-            url: API_URL,
+            url: MEMBER_URL,
             dataType: 'json',
             cache: false,
         })
@@ -22,13 +22,13 @@ module.exports = React.createClass({
              console.error(this.props.url, status, errorThrown.toString());
          }.bind(this));
     },
-    handleMemberSubmit: function(event) {
+    handleMemberSubmit: function(member) {
         var members = this.state.data;
         member.id = Date.now();
         var newMembers = members.concat([member]);
         this.setState({data: newMembers});
         $.ajax({
-            url: API_URL,
+            url: MEMBER_URL,
             dataType: 'json',
             type: 'POST',
             data: member,
@@ -38,7 +38,7 @@ module.exports = React.createClass({
          }.bind(this))
          .fail(function(xhr, status, errorThrown) {
              this.setState({data: members});
-             console.error(API_URL, status, errorThrown.toString());
+             console.error(MEMBER_URL, status, errorThrown.toString());
          }.bind(this));
     },
     componentDidMount: function() {

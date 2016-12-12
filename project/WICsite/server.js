@@ -92,6 +92,68 @@ app.delete('/api/events/:id', function(req, res) {
         });
 });
 
+
+
+//SAME METHODS BUT FOR MEMBERS
+app.get('/api/members', function(req, res) {
+    db.collection("members").find({}).toArray(function(err, docs) {
+        if (err) throw err;
+        res.json(docs);
+    });
+});
+
+app.post('/api/members', function(req, res) {
+    var newMember = {
+        id: Date.now(),
+        name: req.body.name,
+        email: req.body.email,
+        year: req.body.year,
+        major: req.body.major,
+        role: req.body.role
+    };
+    db.collection("members").insertOne(newMember, function(err, result) {
+        if (err) throw err;
+        db.collection("members").find({}).toArray(function(err, docs) {
+            if (err) throw err;
+            res.json(docs);
+        });
+    });
+});
+
+app.get('/api/members/:id', function(req, res) {
+    db.collection("members").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
+        if (err) throw err;
+        res.json(docs);
+    });
+});
+
+app.put('/api/members/:id', function(req, res) {
+    var updateId = Number(req.params.id);
+    var update = req.body;
+    db.collection('members').updateOne(
+        { id: updateId },
+        { $set: update },
+        function(err, result) {
+            if (err) throw err;
+            db.collection("members").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
+            });
+        });
+});
+
+app.delete('/api/members/:id', function(req, res) {
+    db.collection("members").deleteOne(
+        {'id': Number(req.params.id)},
+        function(err, result) {
+            if (err) throw err;
+            db.collection("members").find({}).toArray(function(err, docs) {
+                if (err) throw err;
+                res.json(docs);
+            });
+        });
+});
+
 // Send all routes/methods not specified above to the app root.
 app.use('*', express.static(APP_PATH));
 
