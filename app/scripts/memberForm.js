@@ -15,7 +15,7 @@ module.exports = React.createClass({
     handleYearChange: function(e) {
         this.setState({year: e.target.value});
     },
-    handleTimeChange: function(e) {
+    handleMajorChange: function(e) {
         this.setState({major: e.target.value});
     },
     handleRoleChange: function(e) {
@@ -29,9 +29,10 @@ module.exports = React.createClass({
         var major = this.state.major.trim();
         var role = this.state.role.trim();
         if (!name || !email || !year || !major || !role ) {
+            console.log("have not put in all the values");
             return;
         }
-        this.props.onEventSubmit({name: name, email: email, year: year, major: major, role: role});
+        this.props.onMemberSubmit({name: name, email: email, year: year, major: major, role: role});
         this.setState({name: '', email: '', year: '', major: '', role: ''});
     },
     render: function() {

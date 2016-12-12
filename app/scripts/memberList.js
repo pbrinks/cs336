@@ -9,11 +9,10 @@ module.exports = React.createClass({
         var memberNodes = this.props.data.map(function(member) {
             return (
                 <Member id={member.id} name={member.name} key={member.id}>
-                    {member.date}
-                    {member.time}
-                    {member.description}
-                    {member.location}
-                    {member.cost}
+                    {member.email}
+                    {member.year}
+                    {member.major}
+                    {member.role}
                 </Member>
             );
         });
