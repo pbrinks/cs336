@@ -1,29 +1,28 @@
 body {
-    background: #fff;
+    background: #F0F8FF;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 15px;
+    font-size: 25px;
     line-height: 1.7;
     margin: 0;
     padding: 30px;
 }
 
-a {
-    color: #4183c4;
-    text-decoration: none;
-}
 
-a:hover {
-    text-decoration: underline;
-}
+
 
 code {
-    background-color: #f8f8f8;
+    background-color:   #7FFFD4;
     border: 1px solid #ddd;
     border-radius: 3px;
     font-family: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
     font-size: 12px;
     margin: 0 2px;
     padding: 0 5px;
+}
+
+.pageHeader {
+    text-align: center;
+    font-size: 2.5em;
 }
 
 h1, h2, h3, h4 {
@@ -34,12 +33,12 @@ h1, h2, h3, h4 {
 
 h1 {
     border-bottom: 1px solid #ddd;
-    font-size: 2.5em;
+    font-size: 1.5em;
 }
 
 h2 {
     border-bottom: 1px solid #eee;
-    font-size: 2em;
+    font-size: 1em;
 }
 
 h3 {
@@ -51,10 +50,31 @@ h4 {
 }
 
 p, ul {
+
+
     margin: 15px 0;
 }
 
 ul {
     padding-left: 30px;
+}
+
+/*menu bar */
+/* will put all the li in the center */
+ul {
+text-align:center;
+}
+ul li {
+display:inline;
+}
+/* not text decoration, padding between the elements */
+ul a {
+color: #4183c4;
+text-decoration:none; 
+padding:0 30px; /* variable width */
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
