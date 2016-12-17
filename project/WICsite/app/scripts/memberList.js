@@ -17,7 +17,7 @@ module.exports = React.createClass({
             );
         });
         return (
-            <div className="MemberList">
+            <div>
                 {memberNodes}
             </div>
         );

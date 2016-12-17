@@ -78,7 +78,7 @@ module.exports = React.createClass({
         return (
             <div>
                 <form className="memberForm">
-                    <h1>Member Edit - {this.state.id}</h1>
+                    <h1>Member Edit - {this.state.name}</h1>
                     <input
                         type="text"
                         value={this.state.name}
@@ -106,7 +106,7 @@ module.exports = React.createClass({
                     <button type="button" onClick={this.handleUpdate}>Update</button>
                     <button type="button" onClick={this.handleDelete}>Delete</button>
                 </form>
-                <Link to='/'>Cancel</Link>
+                <Link to='/members'>Cancel</Link>
             </div>
         );
     }

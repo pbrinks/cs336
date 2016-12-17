@@ -12,9 +12,6 @@ import App from './App.js';
 import Home from './Home.js';
 import About from './About.js';
 
-
-import '../css/base.css';
-
 ReactDOM.render((
     <Router history={browserHistory}>
         <Route path="/" component={App}>

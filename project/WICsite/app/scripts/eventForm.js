@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import style from '../css/style.css'
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -27,7 +28,7 @@ module.exports = React.createClass({
         e.preventDefault();
         var name = this.state.name.trim();
         var description = this.state.description.trim();
-        var date = this.state.date.trim();
+        var date = this.state.date;
         var time = this.state.time.trim();
         var location = this.state.location.trim();
         var cost = this.state.cost.trim();
@@ -39,26 +40,21 @@ module.exports = React.createClass({
     },
     render: function() {
         return (
-            <form className="eventForm" onSubmit={this.handleSubmit}>
-                <input className="ui-widget ui-corner-all" type="text" placeholder="name..."
-                    value={this.state.name} onChange={this.handleNameChange}
-                />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="description..."
-                    value={this.state.description} onChange={this.handleDescriptionChange}
-                />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="date..."
-                    value={this.state.date} onChange={this.handleDateChange}
-                />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="time..."
-                    value={this.state.time} onChange={this.handleTimeChange}
-                />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="location..."
-                    value={this.state.location} onChange={this.handleLocationChange}
-                />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="cost..."
-                    value={this.state.cost} onChange={this.handleCostChange}
-                />
-                <input className="ui-button ui-widget ui-corner-all" type="submit" value="Post" />
+            <form onSubmit={this.handleSubmit}>
+                <input type="text" placeholder="name..."
+                    value={this.state.name} onChange={this.handleNameChange} required/>
+                <input type="text" placeholder="description..."
+                    value={this.state.description} onChange={this.handleDescriptionChange} required/>
+                <input type="date" placeholder="date..."
+                    value={this.state.date} onChange={this.handleDateChange} required/>
+                <input type="text" placeholder="time..."
+                    value={this.state.time} onChange={this.handleTimeChange} required/>
+                <input type="text" placeholder="location..."
+                    value={this.state.location} onChange={this.handleLocationChange} required/>
+                <input type="text" placeholder="cost..."
+                    value={this.state.cost} onChange={this.handleCostChange} required/>
+                <br/>
+                <button className={style.buttonFormat} type="submit">Submit</button>
             </form>
         );
     }

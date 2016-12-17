@@ -38,22 +38,22 @@ module.exports = React.createClass({
     render: function() {
         return (
             <form className="memberForm" onSubmit={this.handleSubmit}>
-                <input className="ui-widget ui-corner-all" type="text" placeholder="name..."
+                <input type="text" placeholder="name..."
                     value={this.state.name} onChange={this.handleNameChange}
                 />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="email..."
+                <input type="text" placeholder="email..."
                     value={this.state.email} onChange={this.handleEmailChange}
                 />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="year..."
+                <input type="text" placeholder="year..."
                     value={this.state.year} onChange={this.handleYearChange}
                 />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="major..."
+                <input type="text" placeholder="major..."
                     value={this.state.major} onChange={this.handleMajorChange}
                 />
-                <input className="ui-widget ui-corner-all" type="text" placeholder="role..."
+                <input type="text" placeholder="role..."
                     value={this.state.role} onChange={this.handleRoleChange}
                 />
-                <input className="ui-button ui-widget ui-corner-all" type="submit" value="Post" />
+                <input type="submit" value="Post" />
             </form>
         );
     }

@@ -1,0 +1,99 @@
+body 
+    background: #F0F8FF
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 20px
+    line-height: 1.7
+    margin: 0
+    padding: 30px
+
+.pageHeader 
+    text-align: center
+    font-size: 2.5em
+
+/* header menu formatting */
+.headerMenu 
+    padding-left: 30px
+    text-align:center
+    text-decoration: none
+
+    li
+        display: inline
+        color: #551A8B
+        padding:0 30px
+    a
+        text-decoration: none
+    a:hover
+        color: #270c40
+.buttonFormat
+    font-size: .7em
+    color: #4017c3
+    border-radius: 4px
+    padding: 6px
+    cursor: pointer
+    background-color: #99cfff
+    text-decoration: none
+    border: 0
+
+.editButtons
+    display: inline
+    .buttonFormat
+        margin: 2px
+
+
+.buttonFormat:hover
+    background-color: #66b8ff
+
+.eventHeader
+    font-size: 1em
+    font-weight: bold
+.eventInfo
+    width: 40%
+    font-size: .8em
+.leadershipName
+    font-weight: bold
+    color: #4017c3
+.leadershipRole
+    font-style: italic
+    font-weight: normal;
+
+h1, h2, h3, h4 
+    font-weight: bold
+    margin: 0 0 15px
+    padding: 0
+
+h1 
+    border-bottom: 1px solid #ddd
+    font-size: 1.5em
+
+
+
+input[type=text], input[type=date]
+    padding: 10px
+    margin: 3px
+    border: 2px solid #551A8B
+    border-radius: 4px
+    width: 30%
+
+/* responsive */
+@media all and (max-width 640px)
+    input[type=text], input[type=date]
+        width: 90%
+
+    .pageHeader 
+        font-size: 1.3em
+
+    .headerMenu 
+        padding-left: 2%
+        text-align:center
+
+
+        li
+            font-size: .7em
+            padding:0 2%
+    .eventInfo
+        font-size: .5em
+        width: 100%
+
+    .editButtons
+        .buttonFormat
+            width: 60px
