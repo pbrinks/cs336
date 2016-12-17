@@ -47,7 +47,7 @@ module.exports = React.createClass({
     },
     render: function() {
         return (
-            <div className="eventBox">
+            <div>
                 <h1>Events</h1>
                 <EventList data={this.state.data} />
                 <EventForm onEventSubmit={this.handleEventSubmit} />

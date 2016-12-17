@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 
 import { API_URL } from './global';
+import style from '../css/style.css';
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -46,7 +47,7 @@ module.exports = React.createClass({
     var updatedEvent = {
         name: this.state.name.trim(),
         description: this.state.description.trim(),
-        date: this.state.date.trim(),
+        date: this.state.date,
         time: this.state.time.trim(),
         location: this.state.location.trim(),
         cost: this.state.cost.trim(),
@@ -81,8 +82,8 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div>
-                <form className="eventForm">
-                    <h1>Event Edit - {this.state.id}</h1>
+                <form>
+                    <h1>Event Edit - {this.state.name}</h1>
                     <input
                         type="text"
                         value={this.state.name}
@@ -93,11 +94,11 @@ module.exports = React.createClass({
                         value={this.state.description}
                         onChange={this.handleDescriptionChange}
                     /><input
-                        type="text"
+                        type="date"
                         value={this.state.date}
                         onChange={this.handleDateChange}
                     />
-                    <input
+                    <input 
                         type="text"
                         value={this.state.time}
                         onChange={this.handleTimeChange}
@@ -112,10 +113,14 @@ module.exports = React.createClass({
                         value={this.state.cost}
                         onChange={this.handleCostChange}
                     />
-                    <button type="button" onClick={this.handleUpdate}>Update</button>
-                    <button type="button" onClick={this.handleDelete}>Delete</button>
+                    <br/>
+                    <div className={style.editButtons}>
+                        <button type="button" className={style.buttonFormat} onClick={this.handleUpdate}>Update</button>
+                        <button type="button" className={style.buttonFormat} onClick={this.handleDelete}>Delete</button>
+                        <Link to='/events' className={style.buttonFormat}>Cancel</Link>
+                    </div>
                 </form>
-                <Link to='/'>Cancel</Link>
+         
             </div>
         );
     }

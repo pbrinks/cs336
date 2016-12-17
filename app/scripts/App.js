@@ -1,13 +1,13 @@
 import React from 'react'
 import NavLink from './NavLink'
-import base from '../css/base.css'
+import style from '../css/style.css'
 
 export default React.createClass({
   render() {
     return (
       <div>
-        <h1 className={base.pageHeader}>Calvin College Women in Computing</h1>
-        <ul role="nav">
+        <h1 className={style.pageHeader}>Calvin College Women in Computing</h1>
+        <ul className={style.headerMenu} role="nav">
           <li><NavLink to="/" onlyActiveOnIndex>Home</NavLink></li>
           <li><NavLink to="/about">About</NavLink></li>
           <li><NavLink to="/events">Events</NavLink></li>

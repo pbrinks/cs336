@@ -8,17 +8,12 @@ module.exports = React.createClass({
     render: function() {
         var eventNodes = this.props.data.map(function(event) {
             return (
-                <Event id={event.id} name={event.name} key={event.id}>
-                    {event.date}
-                    {event.time}
-                    {event.description}
-                    {event.location}
-                    {event.cost}
-                </Event>
+                <Event id={event.id} name={event.name} date={event.date} time={event.time} description={event.description} 
+                        location={event.location} cost={event.cost} key={event.id}></Event>
             );
         });
         return (
-            <div className="EventList">
+            <div>
                 {eventNodes}
             </div>
         );

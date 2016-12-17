@@ -10,8 +10,8 @@ module.exports = React.createClass({
     },
     render: function() {
         return (
-            <div className="memebr">
-                <h2 className="memberName" >
+            <div>
+                <h2>
                     {this.props.name}
                 </h2>
                 <span dangerouslySetInnerHTML={this.rawMarkup()} />
