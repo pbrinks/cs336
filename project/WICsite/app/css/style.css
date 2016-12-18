@@ -1,3 +1,7 @@
+/* variables */
+html {
+  height: 100%;
+}
 body {
   background: #f0f8ff;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -5,62 +9,20 @@ body {
   line-height: 1.7;
   margin: 0;
   padding: 30px;
+  position: relative;
+  min-height: 90%;
+  padding-bottom: 60px;
 }
-.pageHeader {
+footer {
+  background-color: #270c40;
+  height: 50px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: #f0f8ff;
   text-align: center;
-  font-size: 2.5em;
-}
-/* header menu formatting */
-.headerMenu {
-  padding-left: 30px;
-  text-align: center;
-  text-decoration: none;
-}
-.headerMenu li {
-  display: inline;
-  color: #551a8b;
-  padding: 0 30px;
-}
-.headerMenu a {
-  text-decoration: none;
-}
-.headerMenu a:hover {
-  color: #270c40;
-}
-.buttonFormat {
-  font-size: 0.7em;
-  color: #4017c3;
-  border-radius: 4px;
-  padding: 6px;
-  cursor: pointer;
-  background-color: #99cfff;
-  text-decoration: none;
-  border: 0;
-}
-.editButtons {
-  display: inline;
-}
-.editButtons .buttonFormat {
-  margin: 2px;
-}
-.buttonFormat:hover {
-  background-color: #66b8ff;
-}
-.eventHeader {
-  font-size: 1em;
-  font-weight: bold;
-}
-.eventInfo {
-  width: 40%;
-  font-size: 0.8em;
-}
-.leadershipName {
-  font-weight: bold;
-  color: #4017c3;
-}
-.leadershipRole {
-  font-style: italic;
-  font-weight: normal;
 }
 h1,
 h2,
@@ -82,6 +44,67 @@ input[type=date] {
   border-radius: 4px;
   width: 30%;
 }
+.pageHeader {
+  text-align: center;
+  font-size: 2.5em;
+}
+/* header menu formatting */
+.headerMenu {
+  padding-left: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+.headerMenu li {
+  display: inline;
+  padding: 0 30px;
+}
+.headerMenu a {
+  text-decoration: none;
+  color: #551a8b;
+}
+.headerMenu a:hover {
+  color: #270c40;
+}
+.buttonFormat {
+  font-size: 0.7em;
+  color: #551a8b;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  background-color: #99cfff;
+  text-decoration: none;
+  border: 0;
+}
+.editButtons {
+  display: inline;
+}
+.editButtons .buttonFormat {
+  margin: 2px;
+}
+.buttonFormat:hover {
+  background-color: #66b8ff;
+}
+.contentHeader {
+  font-size: 1em;
+  font-weight: bold;
+}
+.contentInfo {
+  width: 40%;
+  font-size: 0.8em;
+}
+.leadershipName {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #551a8b;
+}
+.leadershipRole {
+  font-style: italic;
+  font-weight: normal;
+}
+.leadershipDesc {
+  width: 50%;
+  border-bottom: 1px solid #ddd;
+}
 /* responsive */
 @media all and (max-width: 640px) {
   input[type=text],
@@ -99,7 +122,7 @@ input[type=date] {
     font-size: 0.7em;
     padding: 0 2%;
   }
-  .eventInfo {
+  .contentInfo {
     font-size: 0.5em;
     width: 100%;
   }

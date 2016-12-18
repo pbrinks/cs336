@@ -11,10 +11,10 @@ module.exports = React.createClass({
     render: function() {
         return (
             <div>
-                <div className={style.eventHeader}>
+                <div className={style.contentHeader}>
                     {this.props.name}
                 </div>
-                <div className={style.eventInfo}>
+                <div className={style.contentInfo}>
                     <div>
                         {this.props.date}, {this.props.time}
                     </div>
@@ -31,4 +31,5 @@ module.exports = React.createClass({
             </div>
         );
     }
+    
 });

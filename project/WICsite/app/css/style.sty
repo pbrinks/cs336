@@ -1,10 +1,51 @@
+/* variables */
+background = #F0F8FF
+border = #ddd
+purple = #551A8B
+dark-purple = #270c40
+light-blue = #66b8ff
+button-hover = #99cfff
+
+html
+    height: 100%
+
 body 
-    background: #F0F8FF
+    background: background
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
     font-size: 20px
     line-height: 1.7
     margin: 0
     padding: 30px
+    position: relative
+    min-height: 90%
+    padding-bottom: 60px
+
+footer
+    background-color: dark-purple
+    height: 50px
+    width 100%
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    color: background
+    text-align: center
+
+h1, h2, h3, h4 
+    font-weight: bold
+    margin: 0 0 15px
+    padding: 0
+
+h1 
+    border-bottom: 1px solid border
+    font-size: 1.5em
+
+input[type=text], input[type=date]
+    padding: 10px
+    margin: 3px
+    border: 2px solid purple
+    border-radius: 4px
+    width: 30%
 
 .pageHeader 
     text-align: center
@@ -18,19 +59,19 @@ body
 
     li
         display: inline
-        color: #551A8B
         padding:0 30px
     a
         text-decoration: none
+        color: purple
     a:hover
-        color: #270c40
+        color: dark-purple
 .buttonFormat
     font-size: .7em
-    color: #4017c3
+    color: purple
     border-radius: 4px
     padding: 6px
     cursor: pointer
-    background-color: #99cfff
+    background-color: button-hover
     text-decoration: none
     border: 0
 
@@ -39,40 +80,27 @@ body
     .buttonFormat
         margin: 2px
 
-
 .buttonFormat:hover
-    background-color: #66b8ff
+    background-color: light-blue
 
-.eventHeader
+.contentHeader
     font-size: 1em
     font-weight: bold
-.eventInfo
+.contentInfo
     width: 40%
     font-size: .8em
 .leadershipName
+    font-size: 1.1em
     font-weight: bold
-    color: #4017c3
+    color: purple
 .leadershipRole
     font-style: italic
     font-weight: normal;
-
-h1, h2, h3, h4 
-    font-weight: bold
-    margin: 0 0 15px
-    padding: 0
-
-h1 
-    border-bottom: 1px solid #ddd
-    font-size: 1.5em
+.leadershipDesc
+    width: 50%
+    border-bottom: 1px solid border 
 
 
-
-input[type=text], input[type=date]
-    padding: 10px
-    margin: 3px
-    border: 2px solid #551A8B
-    border-radius: 4px
-    width: 30%
 
 /* responsive */
 @media all and (max-width 640px)
@@ -90,7 +118,7 @@ input[type=text], input[type=date]
         li
             font-size: .7em
             padding:0 2%
-    .eventInfo
+    .contentInfo
         font-size: .5em
         width: 100%
 

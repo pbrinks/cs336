@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import $ from 'jquery';
 
 import { MEMBER_URL } from './global';
+import style from '../css/style.css';
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -103,10 +104,13 @@ module.exports = React.createClass({
                         value={this.state.role}
                         onChange={this.handleRoleChange}
                     />
-                    <button type="button" onClick={this.handleUpdate}>Update</button>
-                    <button type="button" onClick={this.handleDelete}>Delete</button>
+                    <br/>
+                    <div className={style.editButtons}>
+                        <button type="button" className={style.buttonFormat} onClick={this.handleUpdate}>Update</button>
+                        <button type="button" className={style.buttonFormat} onClick={this.handleDelete}>Delete</button>
+                        <Link to='/events' className={style.buttonFormat}>Cancel</Link>
+                    </div>
                 </form>
-                <Link to='/members'>Cancel</Link>
             </div>
         );
     }

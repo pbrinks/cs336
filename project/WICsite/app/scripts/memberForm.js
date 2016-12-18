@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import style from '../css/style.css';
 // for styling, need to import stylesheet at top and need to put className = "styles.nameofclass"
 
 module.exports = React.createClass({
@@ -53,7 +54,8 @@ module.exports = React.createClass({
                 <input type="text" placeholder="role..."
                     value={this.state.role} onChange={this.handleRoleChange}
                 />
-                <input type="submit" value="Post" />
+                <br/>
+                  <button className={style.buttonFormat} type="submit">Submit</button>
             </form>
         );
     }
