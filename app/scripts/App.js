@@ -14,6 +14,7 @@ export default React.createClass({
           <li><NavLink to="/members">Members</NavLink></li>
         </ul>
         {this.props.children}
+        <footer>&#169; Calvin College Women in Computing</footer>
       </div>
     )
   }
