@@ -1,13 +1,7 @@
-/**
- * This file provided by Facebook is for non-commercial testing and evaluation
- * purposes only. Facebook reserves all rights not expressly granted.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
- * FACEBOOK BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
- * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
- * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ * 
+ * server.js defines HTTP protocols and communicates with the database
  */
 
 var path = require('path');
@@ -15,7 +9,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 var MongoClient = require('mongodb').MongoClient
-
 var db;
 var APP_PATH = path.join(__dirname, 'dist');
 
@@ -31,6 +24,8 @@ app.use(function(req, res, next) {
     next();
 });
 
+/* HTTP protocols for events */
+// gets event list from the database
 app.get('/api/events', function(req, res) {
     db.collection("events").find({}).toArray(function(err, docs) {
         if (err) throw err;
@@ -38,6 +33,7 @@ app.get('/api/events', function(req, res) {
     });
 });
 
+//posts an event to the database
 app.post('/api/events', function(req, res) {
     var newEvent = {
         id: Date.now(),
@@ -58,6 +54,7 @@ app.post('/api/events', function(req, res) {
     });
 });
 
+//gets event with specific id from the database
 app.get('/api/events/:id', function(req, res) {
     db.collection("events").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
         if (err) throw err;
@@ -65,6 +62,7 @@ app.get('/api/events/:id', function(req, res) {
     });
 });
 
+//puts (edits) event with specific id in the database
 app.put('/api/events/:id', function(req, res) {
     var updateId = Number(req.params.id);
     var update = req.body;
@@ -80,6 +78,7 @@ app.put('/api/events/:id', function(req, res) {
         });
 });
 
+//deletes event with specific id from the database
 app.delete('/api/events/:id', function(req, res) {
     db.collection("events").deleteOne(
         {'id': Number(req.params.id)},
@@ -94,7 +93,8 @@ app.delete('/api/events/:id', function(req, res) {
 
 
 
-//SAME METHODS BUT FOR MEMBERS
+/* HTTP protocols for events */
+// gets member list from the database
 app.get('/api/members', function(req, res) {
     db.collection("members").find({}).toArray(function(err, docs) {
         if (err) throw err;
@@ -102,6 +102,7 @@ app.get('/api/members', function(req, res) {
     });
 });
 
+//posts a member to the database
 app.post('/api/members', function(req, res) {
     var newMember = {
         id: Date.now(),
@@ -120,6 +121,7 @@ app.post('/api/members', function(req, res) {
     });
 });
 
+//gets member with specific id from the database
 app.get('/api/members/:id', function(req, res) {
     db.collection("members").find({"id": Number(req.params.id)}).toArray(function(err, docs) {
         if (err) throw err;
@@ -127,6 +129,7 @@ app.get('/api/members/:id', function(req, res) {
     });
 });
 
+//puts (edits) member with specific id in the database
 app.put('/api/members/:id', function(req, res) {
     var updateId = Number(req.params.id);
     var update = req.body;
@@ -142,6 +145,7 @@ app.put('/api/members/:id', function(req, res) {
         });
 });
 
+//deletes member with specific id from the database
 app.delete('/api/members/:id', function(req, res) {
     db.collection("members").deleteOne(
         {'id': Number(req.params.id)},
@@ -157,12 +161,13 @@ app.delete('/api/members/:id', function(req, res) {
 // Send all routes/methods not specified above to the app root.
 app.use('*', express.static(APP_PATH));
 
+//specifies the port to listen on
 app.listen(app.get('port'), function() {
     console.log('Server started: http://localhost:' + app.get('port') + '/');
 });
 
 // This assumes that the MongoDB password has been set as an environment variable.
-var mongoURL = 'mongodb://cs336:bjarne@ds037597.mlab.com:37597/cs336';
+var mongoURL = 'mongodb://cs336:' + process.env.MONGO_PASSWORD + '@ds037597.mlab.com:37597/cs336';
 MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) throw err;
     db = dbConnection;
