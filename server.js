@@ -27,7 +27,26 @@ app.use(function(req, res, next) {
 /* HTTP protocols for events */
 // gets event list from the database
 app.get('/api/events', function(req, res) {
-    db.collection("events").find({}).toArray(function(err, docs) {
+    var today = new Date();
+    /**
+    var years = today.getFullYear();
+    var month = today.getMonth();
+    **/
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth() + 1; //January is 0!
+
+    var yyyy = today.getFullYear();
+
+    if (dd < 10){
+        dd = '0' + dd;
+    } 
+    if (mm < 10){
+        mm = '0'+ mm;
+    } 
+    var today = yyyy + '-' + mm + '-' + dd;
+
+    db.collection("events").find({"date":{"$gte" : today}}).toArray(function(err, docs) {
         if (err) throw err;
         res.json(docs);
     });
@@ -167,7 +186,7 @@ app.listen(app.get('port'), function() {
 });
 
 // This assumes that the MongoDB password has been set as an environment variable.
-var mongoURL = 'mongodb://cs336:' + process.env.MONGO_PASSWORD + '@ds037597.mlab.com:37597/cs336';
+var mongoURL = 'mongodb://cs336:bjarne@ds037597.mlab.com:37597/cs336';
 MongoClient.connect(mongoURL, function(err, dbConnection) {
     if (err) throw err;
     db = dbConnection;
