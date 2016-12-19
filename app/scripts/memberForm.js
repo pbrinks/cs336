@@ -45,19 +45,19 @@ module.exports = React.createClass({
             <form className="memberForm" onSubmit={this.handleSubmit}>
                 <br/>
                 <input className={style.inputFormat} type="text" placeholder="name..."
-                    value={this.state.name} onChange={this.handleNameChange}
+                    value={this.state.name} onChange={this.handleNameChange} required
                 />
                 <input className={style.inputFormat} type="text" placeholder="email..."
-                    value={this.state.email} onChange={this.handleEmailChange}
+                    value={this.state.email} onChange={this.handleEmailChange} required
                 />
                 <input className={style.inputFormat} type="text" placeholder="year..."
-                    value={this.state.year} onChange={this.handleYearChange}
+                    value={this.state.year} onChange={this.handleYearChange} required
                 />
                 <input className={style.inputFormat} type="text" placeholder="major..."
-                    value={this.state.major} onChange={this.handleMajorChange}
+                    value={this.state.major} onChange={this.handleMajorChange} required
                 />
                 <input className={style.inputFormat} type="text" placeholder="role..."
-                    value={this.state.role} onChange={this.handleRoleChange}
+                    value={this.state.role} onChange={this.handleRoleChange} required
                 />
                   <button className={style.buttonFormat} type="submit">Submit</button>
             </form>
