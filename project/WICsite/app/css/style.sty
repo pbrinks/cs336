@@ -40,12 +40,14 @@ h1
     border-bottom: 1px solid border
     font-size: 1.5em
 
-input[type=text], input[type=date]
+.inputFormat
     padding: 10px
-    margin: 3px
+    margin-top: 5px
     border: 2px solid purple
     border-radius: 4px
     width: 30%
+    display: block
+
 
 .pageHeader 
     text-align: center
@@ -86,8 +88,9 @@ input[type=text], input[type=date]
 .contentHeader
     font-size: 1em
     font-weight: bold
+
 .contentInfo
-    width: 40%
+    width:50%
     font-size: .8em
 .leadershipName
     font-size: 1.1em
@@ -98,13 +101,22 @@ input[type=text], input[type=date]
     font-weight: normal;
 .leadershipDesc
     width: 50%
+.leadershipEmail
+    font-style: italic
     border-bottom: 1px solid border 
+
+.imageOne
+    width: 51%
+
+.imageTwo
+    width: 25%
+    padding-right: 1%
 
 
 
 /* responsive */
 @media all and (max-width 640px)
-    input[type=text], input[type=date]
+    .inputFormat
         width: 90%
 
     .pageHeader 
@@ -113,15 +125,27 @@ input[type=text], input[type=date]
     .headerMenu 
         padding-left: 2%
         text-align:center
-
-
         li
             font-size: .7em
             padding:0 2%
+
     .contentInfo
-        font-size: .5em
         width: 100%
 
     .editButtons
         .buttonFormat
             width: 60px
+
+    .imageOne
+        width: 90%
+
+    .imageTwo
+        width: 90%
+
+    .leadershipDesc
+        width: 90%
+
+    footer 
+        font-size: .7em
+    
+

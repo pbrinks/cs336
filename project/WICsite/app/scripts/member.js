@@ -4,10 +4,6 @@ import { Link } from 'react-router';
 import style from '../css/style.css';
 
 module.exports = React.createClass({
-    rawMarkup: function() {
-        var md = new Remarkable({html: true});
-        return { __html: rawMarkup };
-    },
     render: function() {
         return (
                <div>
@@ -19,10 +15,7 @@ module.exports = React.createClass({
                         {this.props.email}
                     </div>
                     <div>
-                        {this.props.year}
-                    </div>
-                    <div>
-                        {this.props.major}
+                        {this.props.year}, {this.props.major}
                     </div>
                     <div>
                         {this.props.role}

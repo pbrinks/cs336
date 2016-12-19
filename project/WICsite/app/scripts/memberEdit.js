@@ -80,35 +80,34 @@ module.exports = React.createClass({
             <div>
                 <form className="memberForm">
                     <h1>Member Edit - {this.state.name}</h1>
-                    <input
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.name}
                         onChange={this.handleNameChange}
                     />
-                    <input
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.email}
                         onChange={this.handleEmailChange}
-                    /><input
+                    /><input className={style.inputFormat}
                         type="text"
                         value={this.state.year}
                         onChange={this.handleYearChange}
                     />
-                    <input
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.major}
                         onChange={this.handleMajorChange}
                     />
-                    <input
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.role}
                         onChange={this.handleRoleChange}
                     />
-                    <br/>
                     <div className={style.editButtons}>
                         <button type="button" className={style.buttonFormat} onClick={this.handleUpdate}>Update</button>
                         <button type="button" className={style.buttonFormat} onClick={this.handleDelete}>Delete</button>
-                        <Link to='/events' className={style.buttonFormat}>Cancel</Link>
+                        <Link to='/members' className={style.buttonFormat}>Cancel</Link>
                     </div>
                 </form>
             </div>

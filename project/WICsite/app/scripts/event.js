@@ -4,10 +4,6 @@ import { Link } from 'react-router';
 import style from '../css/style.css';
 
 module.exports = React.createClass({
-    rawMarkup: function() {
-        var md = new Remarkable({html: true});
-        return { __html: rawMarkup };
-    },
     render: function() {
         return (
             <div>
@@ -31,5 +27,5 @@ module.exports = React.createClass({
             </div>
         );
     }
-    
+
 });
