@@ -10,6 +10,25 @@ import style from '../css/style.css';
 
 module.exports = React.createClass({
     render: function() {
+        var monthNames = ["January", "February", "March", "April", "May", "June",
+         "July", "August", "September", "October", "November", "December"];
+        var cts = (this.props.date),
+        cmonth = (new Date(cts)).getMonth(),
+        cday = (new Date(cts)).getDate() + 1;
+        var month = monthNames[cmonth];
+        if (month =="January" || month == "March" || month == "May" || month == "July" || month == "August" || month == "October" || month == "December") {
+            if (cday > 31) {
+                cday = 1;
+            }
+        } else if (month =="April" || month =="June" || month =="September" || month =="November") {
+            if (cday > 30) {
+                cday = 1;
+            }
+        } else if ( month == "February") {
+            if (cday > 28) {
+                cday = 1;
+            }
+        }
         return (
             <div>
                 <div className={style.contentHeader}>
@@ -17,7 +36,7 @@ module.exports = React.createClass({
                 </div>
                 <div className={style.contentInfo}>
                     <div>
-                        {this.props.date}, {this.props.time}
+                        {month} {cday}, {this.props.time}
                     </div>
                     <div>
                         {this.props.location}
