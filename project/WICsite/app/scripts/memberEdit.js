@@ -1,7 +1,10 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * memberEdit.js creates the form for editing members */
 import React from 'react';
 import { Link } from 'react-router';
 import $ from 'jquery';
-
 import { MEMBER_URL } from './global';
 import style from '../css/style.css';
 

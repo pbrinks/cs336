@@ -1,6 +1,9 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * memberBox.js diplays the list of members along with a form to add a new member */
 import React from 'react';
 import $ from 'jquery';
-
 import MemberList from './memberList';
 import MemberForm from './memberForm';
 import { MEMBER_URL, POLL_INTERVAL } from './global';

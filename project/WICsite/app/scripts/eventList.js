@@ -1,7 +1,12 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * eventList.js renders a list of events *
+ */
+ 
 import React from 'react';
 import $ from 'jquery';
 import Remarkable from 'remarkable';
-
 import Event from './event';
 
 module.exports = React.createClass({

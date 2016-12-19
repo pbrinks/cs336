@@ -1,7 +1,11 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ * 
+ * memberList.js renders a list of members *
+ */
 import React from 'react';
 import $ from 'jquery';
 import Remarkable from 'remarkable';
-
 import Member from './member';
 
 module.exports = React.createClass({

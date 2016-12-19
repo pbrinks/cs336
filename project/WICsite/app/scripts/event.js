@@ -1,3 +1,8 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * event.js displays and formats information for a specific event */
+ 
 import React from 'react';
 import Remarkable from 'remarkable';
 import { Link } from 'react-router';

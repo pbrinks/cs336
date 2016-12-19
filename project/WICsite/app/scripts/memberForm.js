@@ -1,7 +1,11 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * memberForm.js creates the form for creating new members *
+ */
 import React from 'react';
 import $ from 'jquery';
 import style from '../css/style.css';
-// for styling, need to import stylesheet at top and need to put className = "styles.nameofclass"
 
 module.exports = React.createClass({
     getInitialState: function() {
