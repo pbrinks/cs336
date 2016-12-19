@@ -28,7 +28,7 @@ module.exports = React.createClass({
         e.preventDefault();
         var name = this.state.name.trim();
         var description = this.state.description.trim();
-        var date = this.state.date;
+        var date = this.state.date.trim();
         var time = this.state.time.trim();
         var location = this.state.location.trim();
         var cost = this.state.cost.trim();
@@ -41,19 +41,19 @@ module.exports = React.createClass({
     render: function() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="name..."
-                    value={this.state.name} onChange={this.handleNameChange} required/>
-                <input type="text" placeholder="description..."
-                    value={this.state.description} onChange={this.handleDescriptionChange} required/>
-                <input type="date" placeholder="date..."
-                    value={this.state.date} onChange={this.handleDateChange} required/>
-                <input type="text" placeholder="time..."
-                    value={this.state.time} onChange={this.handleTimeChange} required/>
-                <input type="text" placeholder="location..."
-                    value={this.state.location} onChange={this.handleLocationChange} required/>
-                <input type="text" placeholder="cost..."
-                    value={this.state.cost} onChange={this.handleCostChange} required/>
                 <br/>
+                <input className={style.inputFormat} type="text" placeholder="name..."
+                    value={this.state.name} onChange={this.handleNameChange} required/>
+                <input className={style.inputFormat} type="text" placeholder="date..."
+                    value={this.state.date} onChange={this.handleDateChange} required/>
+                <input className={style.inputFormat} type="text" placeholder="time..."
+                    value={this.state.time} onChange={this.handleTimeChange} required/>
+                <input className={style.inputFormat} type="text" placeholder="location..."
+                    value={this.state.location} onChange={this.handleLocationChange} required/>
+                <input className={style.inputFormat} type="text" placeholder="cost..."
+                    value={this.state.cost} onChange={this.handleCostChange} required/>
+                <textarea className={style.inputFormat} placeholder="description..." rows="8"
+                    value={this.state.description} onChange={this.handleDescriptionChange} required/>
                 <button className={style.buttonFormat} type="submit">Submit</button>
             </form>
         );

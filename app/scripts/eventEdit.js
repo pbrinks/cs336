@@ -47,7 +47,7 @@ module.exports = React.createClass({
     var updatedEvent = {
         name: this.state.name.trim(),
         description: this.state.description.trim(),
-        date: this.state.date,
+        date: this.state.date.trim(),
         time: this.state.time.trim(),
         location: this.state.location.trim(),
         cost: this.state.cost.trim(),
@@ -84,36 +84,36 @@ module.exports = React.createClass({
             <div>
                 <form>
                     <h1>Event Edit - {this.state.name}</h1>
-                    <input
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.name}
                         onChange={this.handleNameChange}
                     />
-                    <input
+                   <input className={style.inputFormat}
                         type="text"
-                        value={this.state.description}
-                        onChange={this.handleDescriptionChange}
-                    /><input
-                        type="date"
                         value={this.state.date}
                         onChange={this.handleDateChange}
                     />
-                    <input 
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.time}
                         onChange={this.handleTimeChange}
                     />
-                    <input
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.location}
                         onChange={this.handleLocationChange}
                     />
-                    <input
+                    <input className={style.inputFormat}
                         type="text"
                         value={this.state.cost}
                         onChange={this.handleCostChange}
                     />
-                    <br/>
+                     <textarea className={style.inputFormat}
+                        rows="8"
+                        value={this.state.description}
+                        onChange={this.handleDescriptionChange}
+                    />
                     <div className={style.editButtons}>
                         <button type="button" className={style.buttonFormat} onClick={this.handleUpdate}>Update</button>
                         <button type="button" className={style.buttonFormat} onClick={this.handleDelete}>Delete</button>
