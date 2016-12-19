@@ -51,7 +51,7 @@ module.exports = React.createClass({
     var updatedEvent = {
         name: this.state.name.trim(),
         description: this.state.description.trim(),
-        date: this.state.date.trim(),
+        date: this.state.date,
         time: this.state.time.trim(),
         location: this.state.location.trim(),
         cost: this.state.cost.trim(),
@@ -94,7 +94,7 @@ module.exports = React.createClass({
                         onChange={this.handleNameChange}
                     />
                    <input className={style.inputFormat}
-                        type="text"
+                        type="date"
                         value={this.state.date}
                         onChange={this.handleDateChange}
                     />
