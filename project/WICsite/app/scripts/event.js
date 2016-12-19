@@ -10,13 +10,16 @@ import style from '../css/style.css';
 
 module.exports = React.createClass({
     render: function() {
+        // display event dates in month name day format
         var monthNames = ["January", "February", "March", "April", "May", "June",
          "July", "August", "September", "October", "November", "December"];
-        var cts = (this.props.date),
-        cmonth = (new Date(cts)).getMonth(),
-        cday = (new Date(cts)).getDate() + 1;
+        var cts = (this.props.date);
+        var cmonth = (new Date(cts)).getUTCMonth();
+        var cday = (new Date(cts)).getDate() + 1;   // date is zero indexed
         var month = monthNames[cmonth];
-        if (month =="January" || month == "March" || month == "May" || month == "July" || month == "August" || month == "October" || month == "December") {
+        // if date exceds month day limit
+        if (month =="January" || month == "March" || month == "May" || month == "July" || month == "August" 
+                || month == "October" || month == "December") {
             if (cday > 31) {
                 cday = 1;
             }
@@ -29,6 +32,7 @@ module.exports = React.createClass({
                 cday = 1;
             }
         }
+        // return event info
         return (
             <div>
                 <div className={style.contentHeader}>
