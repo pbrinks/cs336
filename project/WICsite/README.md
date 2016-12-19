@@ -1,7 +1,7 @@
 Calvin College Women in Computing Site
 Paige Brinks, plb7; Lyida Cupery lac26
 
-deployed at https://calvin-wic.herokuapp.com/
+deployed at https://calvin-women-in-computing.herokuapp.com/
 
 This site is the admin view for Calvin College's Women in Computing club site. 
 This website gives a list of upcoming events, allows admin to create new events,
