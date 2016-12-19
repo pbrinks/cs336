@@ -25,27 +25,23 @@ app.use(function(req, res, next) {
 });
 
 /* HTTP protocols for events */
-// gets event list from the database
+
+// gets future events from the database
 app.get('/api/events', function(req, res) {
     var today = new Date();
-    /**
-    var years = today.getFullYear();
-    var month = today.getMonth();
-    **/
-    var today = new Date();
     var dd = today.getDate();
-    var mm = today.getMonth() + 1; //January is 0!
-
+    var mm = today.getMonth() + 1; //January is 0
     var yyyy = today.getFullYear();
 
+    // add zero before single digit dates
     if (dd < 10){
         dd = '0' + dd;
     } 
+    // add zero before single digit months
     if (mm < 10){
         mm = '0'+ mm;
     } 
-    var today = yyyy + '-' + mm + '-' + dd;
-
+    var today = yyyy + '-' + mm + '-' + dd;     // reformat todays date to match what is in the db
     db.collection("events").find({"date":{"$gte" : today}}).toArray(function(err, docs) {
         if (err) throw err;
         res.json(docs);
@@ -62,7 +58,6 @@ app.post('/api/events', function(req, res) {
         time: req.body.time,
         location: req.body.location,
         cost: req.body.cost
-
     };
     db.collection("events").insertOne(newEvent, function(err, result) {
         if (err) throw err;
