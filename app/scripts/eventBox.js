@@ -1,6 +1,10 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * eventBox.js diplays the list of events along with a form to add a new event */
+ 
 import React from 'react';
 import $ from 'jquery';
-
 import EventList from './eventList';
 import EventForm from './eventForm';
 import { API_URL, POLL_INTERVAL } from './global';

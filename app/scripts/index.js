@@ -1,7 +1,11 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ *index.js defines the inline view (components) for each url, making app function similar to multi-page application */
+ 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, Redirect, browserHistory, IndexRoute } from 'react-router';
-
 import EventBox from './eventBox';
 import EventEdit from './eventEdit';
 import EventList from './eventList';

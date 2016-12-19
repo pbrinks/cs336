@@ -1,3 +1,9 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * eventForm.js creates the form for creating new events 
+ */
+ 
 import React from 'react';
 import $ from 'jquery';
 import style from '../css/style.css'

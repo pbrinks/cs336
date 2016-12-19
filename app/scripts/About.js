@@ -1,3 +1,7 @@
+/* Authors: Paige Brinks (plb7), Lydia Cupery (lac26)
+ * Date: December 19, 2016
+ *
+ * About.js renders content for the about page */
 import React from 'react';
 import style from '../css/style.css';
 
@@ -36,7 +40,6 @@ export default React.createClass({
 	    I am also a facilitator for one of the Girls Who Code sessions held at Calvin College. After I graduate, 
 	    I hope to find a job that integrates technology and economics/finance.</div>
 	    <div className={style.leadershipEmail}>baa8@students.calvin.edu</div>
-
     </div>
   }
 })
